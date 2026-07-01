@@ -6,19 +6,27 @@ fn main() {
 
     let secret_number = rand::random_range(1..=100);
 
+    let mut guess_input = String::new();
     loop {
-        let mut guess = String::new();
         println!("Please input your guess : ");
         io::stdin()
-            .read_line(&mut guess)
+            .read_line(&mut guess_input)
             .expect("Failed to read line !");
 
-        let guess: u32 = match guess.trim().parse() {
-            Ok(num) => num,
-            Err(_) => continue,
+        println!("You guessed : {guess_input}");
+
+        let guess: u32 = match guess_input.trim().parse() {
+            Ok(num) => {
+                guess_input.clear();
+                num
+            }
+            Err(err) => {
+                println!("{err} : {guess_input}");
+                guess_input.clear();
+                continue;
+            }
         };
 
-        println!("You guessed : {guess}");
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("Too small !"),
             Ordering::Greater => println!("Too big !"),
