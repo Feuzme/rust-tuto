@@ -5,10 +5,10 @@ fn main() {
     x = 10;
     println!("x = {x}");
 
-    let y = 5;
-    let y = y + 1; //shadow the first variable, it's effectively creating a new varable => thus not throwing an immutability exception
+    let mut y = 5;
+    // let y = y + 1; //shadow the first variable, it's effectively creating a new varable => thus not throwing an immutability exception
     {
-        let y = y * 2;
+        y = y * 2;
         println!("in inner scope is y= {y}")
     }
     println!("y= {y}");
