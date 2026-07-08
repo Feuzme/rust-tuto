@@ -1,4 +1,4 @@
 fn main() {
     println!("Hello, world!");
-    println!("gang type shit")
+    println!("gang type shit, from cargo")
 }
